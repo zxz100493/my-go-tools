@@ -25,12 +25,12 @@ func init() {
 }
 
 func findFile(cmd *cobra.Command, args []string) {
-	c := &service.Config{
+	cfg := &service.Config{
 		Visible:     Verbose,
 		Target:      Target,
 		Destination: Destination,
 	}
-	service.Find(c)
+	service.Find(cfg)
 }
 
 func parseArgs() {
