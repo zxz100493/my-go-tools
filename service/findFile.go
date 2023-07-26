@@ -20,7 +20,8 @@ var filePath = make(chan string)
 func Find(cfg *Config) {
 	fmt.Println("find file service", cfg.Visible)
 	go readDir(cfg.Target, cfg.Destination)
-	go watcher()
+	watcher()
+
 }
 
 func watcher() {
@@ -34,12 +35,17 @@ loop:
 }
 
 func readDir(t string, d string) string {
-	for _, entry := range dirents(t) {
+	fmt.Println("ssss")
+	for _, entry := range dirents(d) {
+		fmt.Printf("current dir is:%s\n", filepath.Join(d, entry.Name()))
+
 		if entry.IsDir() {
-			go readDir(entry.Name(), d)
+			fmt.Printf("it is dir need read continue:%s\n", filepath.Join(d, entry.Name()))
+
+			go readDir(filepath.Join(d, entry.Name()), d)
 		} else {
 			fmt.Printf("entry name is:%s\n", entry.Name())
-			if entry.Name() == d {
+			if entry.Name() == t {
 				return filepath.Join(d, entry.Name())
 			}
 		}
