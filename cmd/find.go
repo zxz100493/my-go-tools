@@ -26,15 +26,15 @@ func init() {
 
 func findFile(cmd *cobra.Command, args []string) {
 	cfg := &service.Config{
-		Visible:     Verbose,
-		Target:      Target,
-		Destination: Destination,
+		Visible:    Verbose,
+		TargetFile: Target,
+		DstDir:     Destination,
 	}
 	service.Find(cfg)
 }
 
 func parseArgs() {
-	findCmd.Flags().StringVarP(&Target, "Target", "t", "the target path", "the target path")
+	findCmd.Flags().StringVarP(&Target, "Target", "f", "the target path", "the target path")
 	findCmd.Flags().StringVarP(&Destination, "Destination", "d", "the Destination path", "the Destination path")
 	findCmd.Flags().BoolVarP(&Verbose, "Verbose", "v", false, "visible the process")
 }
