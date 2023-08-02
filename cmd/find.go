@@ -30,7 +30,10 @@ func findFile(cmd *cobra.Command, args []string) {
 		TargetFile: Target,
 		DstDir:     Destination,
 	}
+	// svc := service.NewFileSearchService(cfg)
 	service.Find(cfg)
+	// service.Search(cfg.DstDir, cfg.TargetFile)
+
 }
 
 func parseArgs() {
